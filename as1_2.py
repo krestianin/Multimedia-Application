@@ -70,24 +70,65 @@ def open_wav():
 def exit_program():
     root.destroy()
 
+# def show_popup(event):
+#     popup_menu.tk_popup(event.x_root, event.y_root)
+
 root = tk.Tk()
 root.title("Media Viewer and Player")
 
-style = ttk.Style()
-style.theme_use('clam')  # Set a theme
+root.state('zoomed') 
+
+# style = ttk.Style()
+# style.theme_use('clam')  # Set a theme
+
 # Create a menu
 menu = Menu(root)
 root.config(menu=menu)
+root.geometry("1000x800")
+
 
 file_menu = Menu(menu, tearoff=0)
-menu.add_cascade(label="Open", menu=file_menu)
+menu.add_cascade(label="Open file", menu=file_menu)
 file_menu.add_command(label="Open TIFF Image", command=open_tiff)
 file_menu.add_command(label="Open WAV File", command=open_wav)
 file_menu.add_separator()
 file_menu.add_command(label="Exit", command=exit_program)
 
+
 # Create a canvas to display images
 canvas = tk.Canvas(root, bg='white')
 canvas.pack(fill=tk.BOTH, expand=True)
 
+width = root.winfo_width()
+height = root.winfo_height()
+canvas.create_text(width / 3, height / 2, text="Welcom to the media viewer!", fill="black", anchor='center', font=('Helvetica', 50, 'bold'))
+
+
 root.mainloop()
+
+
+# root = tk.Tk()
+# root.title("Media Viewer")
+# root.geometry("600x400")
+
+# # Create a canvas to display images
+# canvas = tk.Canvas(root, bg='white')
+# canvas.pack(fill=tk.BOTH, expand=True)
+
+# # Create a button that will open the pop-up menu
+# button = tk.Button(root, text="Open File", command=lambda: button.place_forget())
+# button.pack(side=tk.TOP, pady=50)
+
+# # Create an Exit button
+# exit_button = tk.Button(root, text="Exit", command=exit_program)
+# exit_button.pack(side=tk.BOTTOM, pady=10)
+
+# # Create a pop-up menu
+# popup_menu = tk.Menu(root, tearoff=0)
+# popup_menu.add_command(label="Open TIFF Image", command=open_tiff)
+# popup_menu.add_command(label="Open WAV File", command=open_wav)
+
+# # Bind the button to show the popup on click
+# button.bind("<Button-1>", show_popup)
+
+# root.mainloop()
